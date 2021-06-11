@@ -14,7 +14,6 @@ locals {
   internal_fqdn = format("%s.%s.aws.internal", split("-", var.aws_account)[1], split("-", var.aws_account)[0])
 
   ###### Admin Site Details #######
-  secretpath = trim(var.application, "-")
   sites = [
     "ewfadmin",
     "xmladmin",
