@@ -15,4 +15,4 @@ rm /etc/httpd/conf.d/perl.conf
 #Create and populate httpd config
 /usr/local/bin/j2 -f json /etc/httpd/conf/ewfadmin.httpd.conf.j2 inputs.json > /etc/httpd/conf/httpd.conf
 #Run Ansible playbook for Frontend deployment using provided inputs
-/usr/local/bin/ansible-playbook /root/frontend_deployment.yml -e '${ANSIBLE_INPUTS}'
+/usr/local/bin/ansible-playbook /root/ewfadmin_deployment.yml -e '${ANSIBLE_INPUTS}'

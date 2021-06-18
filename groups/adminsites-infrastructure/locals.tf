@@ -45,7 +45,7 @@ locals {
     mounts_parent_dir          = var.nfs_mount_destination_parent_dir
     mounts                     = var.nfs_mounts
     region                     = var.aws_region
-    cw_log_files               = local.ewfadmin_log_groups
+    cw_log_files               = local.ewfadmin_cw_logs
     cw_agent_user              = "root"
   }
 
@@ -58,7 +58,7 @@ locals {
     mounts_parent_dir          = var.nfs_mount_destination_parent_dir
     mounts                     = var.nfs_mounts
     region                     = var.aws_region
-    cw_log_files               = local.ewfadmin_log_groups
+    cw_log_files               = local.xmladmin_cw_logs
     cw_agent_user              = "root"
   }
 
@@ -71,7 +71,7 @@ locals {
     mounts_parent_dir          = var.nfs_mount_destination_parent_dir
     mounts                     = var.nfs_mounts
     region                     = var.aws_region
-    cw_log_files               = local.ewfadmin_log_groups
+    cw_log_files               = local.xmloutadmin_cw_logs
     cw_agent_user              = "root"
   }
   ################################
