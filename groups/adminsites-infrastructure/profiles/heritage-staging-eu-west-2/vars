@@ -1,0 +1,103 @@
+# Account details
+aws_profile = "heritage-staging-eu-west-2"
+aws_region  = "eu-west-2"
+aws_account = "heritage-staging"
+
+# Account shorthand
+account = "hstg"
+region  = "euw2"
+
+# Application details
+application        = "admin-sites"
+environment        = "staging"
+domain_environment = "stg"
+
+# Frontend ASG settings
+instance_size = "t2.medium"
+min_size = 1
+max_size = 1
+desired_capacity = 1
+
+# CVO Mounts
+nfs_server = "192.168.255.19"
+nfs_mount_destination_parent_dir = "/mnt/nfs/filings"
+nfs_mounts = {
+    ewf_image = {
+      local_mount_point = "image"
+    },
+    ewf_upload = {
+      local_mount_point = "upload"
+    },
+    ewf_submissions = {
+      local_mount_point = "submissions"
+    },
+    ewf_archive = {
+      local_mount_point = "archive"
+    },
+    ewf_recent_filings = {
+      local_mount_point = "recent_filings"
+    }
+  }
+  
+cw_logs = {
+  "messages" = {
+    file_path = "/var/log"
+    log_group_retention = 7
+  }
+  
+  "secure" = {
+    file_path = "/var/log"
+    log_group_retention = 7
+  }
+
+  "yum.log" = {
+    file_path = "/var/log"
+    log_group_retention = 7
+  }
+
+  "errors.log" = {
+    file_path = "/var/log/amazon/ssm"
+    log_group_retention = 7
+  }
+
+  "amazon-ssm-agent.log" = {
+    file_path = "/var/log/amazon/ssm"
+    log_group_retention = 7
+  }
+}
+
+ewfadmin_custom_logs = {
+  "ewfadm_access_log" = {
+  file_path = "/var/log/httpd"
+  log_group_retention = 7
+  }
+
+  "ewfadm_error_log" = {
+    file_path = "/var/log/httpd"
+    log_group_retention = 7
+  }
+}
+
+xmladmin_custom_logs = {
+  "xmladm_access_log" = {
+  file_path = "/var/log/httpd"
+  log_group_retention = 7
+  }
+
+  "xmladm_error_log" = {
+    file_path = "/var/log/httpd"
+    log_group_retention = 7
+  }
+}
+
+xmloutadmin_custom_logs = {
+  "xmloutadm_access_log" = {
+  file_path = "/var/log/httpd"
+  log_group_retention = 7
+  }
+
+  "xmloutadm_error_log" = {
+    file_path = "/var/log/httpd"
+    log_group_retention = 7
+  }
+}
