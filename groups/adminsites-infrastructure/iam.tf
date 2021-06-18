@@ -1,7 +1,7 @@
 module "ewfadmin_iam_profile" {
   source = "git@github.com:companieshouse/terraform-modules//aws/instance_profile?ref=tags/1.0.59"
 
-  name       = "adminsites-profile"
+  name       = "ewfadmin-profile"
   enable_SSM = true
   cw_log_group_arns = length(local.ewfadmin_log_groups) > 0 ? flatten([
     formatlist(
