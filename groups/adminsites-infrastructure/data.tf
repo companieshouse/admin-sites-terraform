@@ -107,6 +107,7 @@ data "template_file" "ewfadmin" {
 
   vars = {
     REGION          = var.aws_region
+    HERITAGE_ENVIRONMENT = title(var.environment)
     FRONTEND_INPUTS = data.vault_generic_secret.ewfadmin_data.data_json
     ANSIBLE_INPUTS  = jsonencode(local.ewfadmin_ansible_inputs)
   }
@@ -130,6 +131,7 @@ data "template_file" "xmladmin" {
 
   vars = {
     REGION          = var.aws_region
+    HERITAGE_ENVIRONMENT = title(var.environment)
     FRONTEND_INPUTS = data.vault_generic_secret.xmladmin_data.data_json
     ANSIBLE_INPUTS  = jsonencode(local.xmladmin_ansible_inputs)
   }
@@ -153,6 +155,7 @@ data "template_file" "xmloutadmin" {
 
   vars = {
     REGION          = var.aws_region
+    HERITAGE_ENVIRONMENT = title(var.environment)
     FRONTEND_INPUTS = data.vault_generic_secret.xmloutadmin_data.data_json
     ANSIBLE_INPUTS  = jsonencode(local.xmloutadmin_ansible_inputs)
   }
