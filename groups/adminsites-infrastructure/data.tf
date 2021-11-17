@@ -106,10 +106,10 @@ data "template_file" "ewfadmin" {
   template = file("${path.module}/templates/ewfadmin_user_data.tpl")
 
   vars = {
-    REGION          = var.aws_region
+    REGION               = var.aws_region
     HERITAGE_ENVIRONMENT = title(var.environment)
-    FRONTEND_INPUTS = data.vault_generic_secret.ewfadmin_data.data_json
-    ANSIBLE_INPUTS  = jsonencode(local.ewfadmin_ansible_inputs)
+    FRONTEND_INPUTS      = data.vault_generic_secret.ewfadmin_data.data_json
+    ANSIBLE_INPUTS       = jsonencode(local.ewfadmin_ansible_inputs)
   }
 }
 
@@ -130,10 +130,10 @@ data "template_file" "xmladmin" {
   template = file("${path.module}/templates/xmladmin_user_data.tpl")
 
   vars = {
-    REGION          = var.aws_region
+    REGION               = var.aws_region
     HERITAGE_ENVIRONMENT = title(var.environment)
-    FRONTEND_INPUTS = data.vault_generic_secret.xmladmin_data.data_json
-    ANSIBLE_INPUTS  = jsonencode(local.xmladmin_ansible_inputs)
+    FRONTEND_INPUTS      = data.vault_generic_secret.xmladmin_data.data_json
+    ANSIBLE_INPUTS       = jsonencode(local.xmladmin_ansible_inputs)
   }
 }
 
@@ -154,10 +154,10 @@ data "template_file" "xmloutadmin" {
   template = file("${path.module}/templates/xmloutadmin_user_data.tpl")
 
   vars = {
-    REGION          = var.aws_region
+    REGION               = var.aws_region
     HERITAGE_ENVIRONMENT = title(var.environment)
-    FRONTEND_INPUTS = data.vault_generic_secret.xmloutadmin_data.data_json
-    ANSIBLE_INPUTS  = jsonencode(local.xmloutadmin_ansible_inputs)
+    FRONTEND_INPUTS      = data.vault_generic_secret.xmloutadmin_data.data_json
+    ANSIBLE_INPUTS       = jsonencode(local.xmloutadmin_ansible_inputs)
   }
 }
 
