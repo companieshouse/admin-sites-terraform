@@ -67,6 +67,11 @@ variable "domain_name" {
   description = "Top level domain dame"
 }
 
+variable "enable_sns_topic" {
+  type        = bool
+  description = "A boolean value to alter deployment of an SNS topic for CloudWatch actions"
+  default     = false
+}
 # ------------------------------------------------------------------------------
 # NFS Variables
 # ------------------------------------------------------------------------------

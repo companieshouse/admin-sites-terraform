@@ -6,6 +6,7 @@ locals {
   s3_releases         = data.vault_generic_secret.s3_releases.data
   adminsites_ec2_data = data.vault_generic_secret.adminsites_ec2_data.data
 
+  sns_kms_key_id              = data.vault_generic_secret.kms_keys.data["sns"]
   logs_kms_key_id             = data.vault_generic_secret.kms_keys.data["logs"]
   ssm_kms_key_id              = data.vault_generic_secret.security_kms_keys.data["session-manager-kms-key-arn"]
   session_manager_bucket_name = data.vault_generic_secret.security_s3_buckets.data["session-manager-bucket-name"]
