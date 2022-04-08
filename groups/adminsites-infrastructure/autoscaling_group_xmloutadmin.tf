@@ -1,6 +1,6 @@
 # ASG Scheduled Shutdown for non-production
 resource "aws_autoscaling_schedule" "xmloutadmin_schedule_stop" {
-  count = var.environment == "hlive" ? 0 : 1
+  count = var.environment == "live" ? 0 : 1
 
   scheduled_action_name  = "${var.aws_account}-${var.application}-xmloutadmin-scheduled-shutdown"
   min_size               = 0
@@ -12,7 +12,7 @@ resource "aws_autoscaling_schedule" "xmloutadmin_schedule_stop" {
 
 # ASG Scheduled Startup for non-production
 resource "aws_autoscaling_schedule" "xmloutadmin_schedule_start" {
-  count = var.environment == "hlive" ? 0 : 1
+  count = var.environment == "live" ? 0 : 1
 
   scheduled_action_name  = "${var.aws_account}-${var.application}-xmloutadmin-scheduled-startup"
   min_size               = var.min_size
