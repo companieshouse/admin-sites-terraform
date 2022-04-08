@@ -24,12 +24,16 @@
 | <a name="module_adminsites_asg_security_group"></a> [adminsites\_asg\_security\_group](#module\_adminsites\_asg\_security\_group) | terraform-aws-modules/security-group/aws | ~> 3.0 |
 | <a name="module_adminsites_internal_alb"></a> [adminsites\_internal\_alb](#module\_adminsites\_internal\_alb) | terraform-aws-modules/alb/aws | ~> 5.0 |
 | <a name="module_adminsites_internal_alb_security_group"></a> [adminsites\_internal\_alb\_security\_group](#module\_adminsites\_internal\_alb\_security\_group) | terraform-aws-modules/security-group/aws | ~> 3.0 |
+| <a name="module_cloudwatch_sns_notifications"></a> [cloudwatch\_sns\_notifications](#module\_cloudwatch\_sns\_notifications) | terraform-aws-modules/sns/aws | 3.3.0 |
 | <a name="module_ewfadmin_autoscaling_groups"></a> [ewfadmin\_autoscaling\_groups](#module\_ewfadmin\_autoscaling\_groups) | git@github.com:companieshouse/terraform-modules//aws/terraform-aws-autoscaling?ref=tags/1.0.36 |  |
+| <a name="module_ewfadmin_autoscaling_groups_alarms"></a> [ewfadmin\_autoscaling\_groups\_alarms](#module\_ewfadmin\_autoscaling\_groups\_alarms) | git@github.com:companieshouse/terraform-modules//aws/asg-cloudwatch-alarms?ref=tags/1.0.108 |  |
 | <a name="module_ewfadmin_iam_profile"></a> [ewfadmin\_iam\_profile](#module\_ewfadmin\_iam\_profile) | git@github.com:companieshouse/terraform-modules//aws/instance_profile?ref=tags/1.0.59 |  |
-| <a name="module_internal_alb_metrics"></a> [internal\_alb\_metrics](#module\_internal\_alb\_metrics) | git@github.com:companieshouse/terraform-modules//aws/alb-metrics?ref=tags/1.0.26 |  |
+| <a name="module_internal_alb_alarms"></a> [internal\_alb\_alarms](#module\_internal\_alb\_alarms) | git@github.com:companieshouse/terraform-modules//aws/alb-cloudwatch-alarms?ref=tags/1.0.104 |  |
 | <a name="module_xmladmin_autoscaling_groups"></a> [xmladmin\_autoscaling\_groups](#module\_xmladmin\_autoscaling\_groups) | git@github.com:companieshouse/terraform-modules//aws/terraform-aws-autoscaling?ref=tags/1.0.36 |  |
+| <a name="module_xmladmin_autoscaling_groups_alarms"></a> [xmladmin\_autoscaling\_groups\_alarms](#module\_xmladmin\_autoscaling\_groups\_alarms) | git@github.com:companieshouse/terraform-modules//aws/asg-cloudwatch-alarms?ref=tags/1.0.108 |  |
 | <a name="module_xmladmin_iam_profile"></a> [xmladmin\_iam\_profile](#module\_xmladmin\_iam\_profile) | git@github.com:companieshouse/terraform-modules//aws/instance_profile?ref=tags/1.0.59 |  |
 | <a name="module_xmloutadmin_autoscaling_groups"></a> [xmloutadmin\_autoscaling\_groups](#module\_xmloutadmin\_autoscaling\_groups) | git@github.com:companieshouse/terraform-modules//aws/terraform-aws-autoscaling?ref=tags/1.0.36 |  |
+| <a name="module_xmloutadmin_autoscaling_groups_alarms"></a> [xmloutadmin\_autoscaling\_groups\_alarms](#module\_xmloutadmin\_autoscaling\_groups\_alarms) | git@github.com:companieshouse/terraform-modules//aws/asg-cloudwatch-alarms?ref=tags/1.0.108 |  |
 | <a name="module_xmloutadmin_iam_profile"></a> [xmloutadmin\_iam\_profile](#module\_xmloutadmin\_iam\_profile) | git@github.com:companieshouse/terraform-modules//aws/instance_profile?ref=tags/1.0.59 |  |
 
 ## Resources
@@ -97,6 +101,7 @@
 | <a name="input_cw_logs"></a> [cw\_logs](#input\_cw\_logs) | Map of log file information; used to create log groups, IAM permissions and passed to the application to configure remote logging | `map(any)` | `{}` | no |
 | <a name="input_default_log_group_retention_in_days"></a> [default\_log\_group\_retention\_in\_days](#input\_default\_log\_group\_retention\_in\_days) | Total days to retain logs in CloudWatch log group if not specified for specific logs | `number` | `14` | no |
 | <a name="input_domain_name"></a> [domain\_name](#input\_domain\_name) | Top level domain dame | `string` | `"companieshouse.gov.uk"` | no |
+| <a name="input_enable_sns_topic"></a> [enable\_sns\_topic](#input\_enable\_sns\_topic) | A boolean value to alter deployment of an SNS topic for CloudWatch actions | `bool` | `false` | no |
 | <a name="input_ewfadmin_custom_logs"></a> [ewfadmin\_custom\_logs](#input\_ewfadmin\_custom\_logs) | Map of log file information for EWF Admin specifically; used to create log groups, IAM permissions and passed to the application to configure remote logging | `map(any)` | `{}` | no |
 | <a name="input_health_check_path"></a> [health\_check\_path](#input\_health\_check\_path) | Target group health check path | `string` | `"/"` | no |
 | <a name="input_nfs_mount_destination_parent_dir"></a> [nfs\_mount\_destination\_parent\_dir](#input\_nfs\_mount\_destination\_parent\_dir) | The parent folder that all NFS shares should be mounted inside on the EC2 instance | `string` | `"/mnt"` | no |
