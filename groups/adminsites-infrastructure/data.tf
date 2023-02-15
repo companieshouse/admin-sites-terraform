@@ -74,7 +74,9 @@ data "vault_generic_secret" "xmloutadmin_data" {
   path = "applications/${var.aws_account}-${var.aws_region}/${replace(var.application, "-", "")}/xmloutadmin"
 }
 
-
+data "aws_ec2_managed_prefix_list" "administration" {
+  name = "administration-cidr-ranges"
+}
 
 data "aws_acm_certificate" "acm_cert" {
   domain = "*.${var.domain_name}"
