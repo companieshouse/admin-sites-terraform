@@ -21,7 +21,7 @@ desired_capacity = 0
 enable_sns_topic = "false"
 
 # CVO Mounts
-nfs_server = "10.104.9.145"
+nfs_server = "cvonfs.development.heritage.aws.internal"
 nfs_mount_destination_parent_dir = "/mnt/nfs/filings"
 nfs_mounts = {
     ewf_image = {
