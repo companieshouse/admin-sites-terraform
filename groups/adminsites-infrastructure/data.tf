@@ -108,8 +108,9 @@ data "template_file" "ewfadmin" {
   vars = {
     REGION               = var.aws_region
     HERITAGE_ENVIRONMENT = title(var.environment)
-    FRONTEND_INPUTS      = data.vault_generic_secret.ewfadmin_data.data_json
-    ANSIBLE_INPUTS       = jsonencode(local.ewfadmin_ansible_inputs)
+    APP_VERSION          = var.ewfadmin_app_release_version
+    FRONTEND_INPUTS_PATH = "${local.parameter_store_path_prefix}/ewfadmin_frontend_inputs"
+    ANSIBLE_INPUTS_PATH  = "${local.parameter_store_path_prefix}/ewfadmin_frontend_ansible_inputs"
   }
 }
 
@@ -132,8 +133,9 @@ data "template_file" "xmladmin" {
   vars = {
     REGION               = var.aws_region
     HERITAGE_ENVIRONMENT = title(var.environment)
-    FRONTEND_INPUTS      = data.vault_generic_secret.xmladmin_data.data_json
-    ANSIBLE_INPUTS       = jsonencode(local.xmladmin_ansible_inputs)
+    APP_VERSION          = var.xmladmin_app_release_version
+    FRONTEND_INPUTS_PATH = "${local.parameter_store_path_prefix}/xmladmin_frontend_inputs"
+    ANSIBLE_INPUTS_PATH  = "${local.parameter_store_path_prefix}/xmladmin_frontend_ansible_inputs"
   }
 }
 
@@ -156,8 +158,9 @@ data "template_file" "xmloutadmin" {
   vars = {
     REGION               = var.aws_region
     HERITAGE_ENVIRONMENT = title(var.environment)
-    FRONTEND_INPUTS      = data.vault_generic_secret.xmloutadmin_data.data_json
-    ANSIBLE_INPUTS       = jsonencode(local.xmloutadmin_ansible_inputs)
+    APP_VERSION          = var.xmloutadmin_app_release_version
+    FRONTEND_INPUTS_PATH = "${local.parameter_store_path_prefix}/xmloutadmin_frontend_inputs"
+    ANSIBLE_INPUTS_PATH  = "${local.parameter_store_path_prefix}/xmloutadmin_frontend_ansible_inputs"
   }
 }
 
