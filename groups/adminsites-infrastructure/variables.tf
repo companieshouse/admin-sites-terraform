@@ -131,7 +131,7 @@ variable "cw_logs" {
 
 variable "ami_name" {
   type        = string
-  default     = "admin-sites-0.1.26"
+  default     = "admin-sites-*"
   description = "Name of the AMI to use in the Auto Scaling configuration for frontend server(s)"
 }
 
