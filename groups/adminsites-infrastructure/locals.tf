@@ -6,8 +6,10 @@ locals {
   s3_releases         = data.vault_generic_secret.s3_releases.data
   adminsites_ec2_data = data.vault_generic_secret.adminsites_ec2_data.data
 
-  sns_kms_key_id              = data.vault_generic_secret.kms_keys.data["sns"]
-  logs_kms_key_id             = data.vault_generic_secret.kms_keys.data["logs"]
+  kms_keys_data               = data.vault_generic_secret.kms_keys.data
+  account_ssm_key_arn         = local.kms_keys_data["ssm"]
+  sns_kms_key_id              = local.kms_keys_data["sns"]
+  logs_kms_key_id             = local.kms_keys_data["logs"]
   ssm_kms_key_id              = data.vault_generic_secret.security_kms_keys.data["session-manager-kms-key-arn"]
   session_manager_bucket_name = data.vault_generic_secret.security_s3_buckets.data["session-manager-bucket-name"]
   elb_logs_s3_bucket_name     = data.vault_generic_secret.security_s3_buckets.data["elb-access-logs-bucket-name"]
@@ -75,6 +77,18 @@ locals {
     cw_log_files               = local.xmloutadmin_cw_logs
     cw_agent_user              = "root"
   }
+
+  parameter_store_path_prefix = "/${var.application}/${var.environment}"
+
+  parameter_store_secrets = {
+    ewfadmin_frontend_inputs            = data.vault_generic_secret.ewfadmin_data.data_json
+    ewfadmin_frontend_ansible_inputs    = jsonencode(local.ewfadmin_ansible_inputs)
+    xmladmin_frontend_inputs            = data.vault_generic_secret.xmladmin_data.data_json
+    xmladmin_frontend_ansible_inputs    = jsonencode(local.xmladmin_ansible_inputs)
+    xmloutadmin_frontend_inputs         = data.vault_generic_secret.xmloutadmin_data.data_json
+    xmloutadmin_frontend_ansible_inputs = jsonencode(local.xmloutadmin_ansible_inputs)
+  }
+
   ################################
 
   default_tags = {
