@@ -21,7 +21,7 @@ desired_capacity = 1
 enable_sns_topic = "false"
 
 # CVO Mounts
-nfs_server = "192.168.255.19"
+nfs_server = "192.168.255.24"
 nfs_mount_destination_parent_dir = "/mnt/nfs/filings"
 nfs_mounts = {
     ewf_image = {
