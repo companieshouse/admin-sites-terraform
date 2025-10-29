@@ -27,7 +27,7 @@ module "adminsites_internal_alb" {
   load_balancer_type         = "application"
   enable_deletion_protection = true
 
-  security_groups = [module.adminsites_internal_alb_security_group.this_security_group_id]
+  security_groups = [module.adminsites_internal_alb_security_group.security_group_id]
   subnets         = data.aws_subnets.web.ids
 
   access_logs = {

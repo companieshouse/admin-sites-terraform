@@ -12,7 +12,7 @@ module "adminsites_asg_security_group" {
   computed_ingress_with_source_security_group_id = [
     {
       rule                     = "http-80-tcp"
-      source_security_group_id = module.adminsites_internal_alb_security_group.this_security_group_id
+      source_security_group_id = module.adminsites_internal_alb_security_group.security_group_id
     }
   ]
   number_of_computed_ingress_with_source_security_group_id = 1
