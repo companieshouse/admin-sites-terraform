@@ -3,7 +3,7 @@
 # ------------------------------------------------------------------------------
 module "adminsites_internal_alb_security_group" {
   source  = "terraform-aws-modules/security-group/aws"
-  version = "~> 3.0"
+  version = "~> 5.0"
 
   name        = "sgr-${var.application}-alb-001"
   description = "Security group for the ${var.application} web servers"
@@ -28,7 +28,7 @@ module "adminsites_internal_alb" {
   enable_deletion_protection = true
 
   security_groups = [module.adminsites_internal_alb_security_group.this_security_group_id]
-  subnets         = data.aws_subnet_ids.web.ids
+  subnets         = data.aws_subnets.web.ids
 
   access_logs = {
     bucket  = local.elb_logs_s3_bucket_name
@@ -170,9 +170,9 @@ module "adminsites_internal_alb" {
 
   tags = merge(
     local.default_tags,
-    map(
-      "ServiceTeam", "${upper(var.application)}-FE-Support"
-    )
+    {
+      ServiceTeam = "${upper(var.application)}-FE-Support"
+    }
   )
 }
 
@@ -180,7 +180,7 @@ module "adminsites_internal_alb" {
 # Internal ALB CloudWatch Alarms
 #--------------------------------------------
 module "internal_alb_alarms" {
-  source = "git@github.com:companieshouse/terraform-modules//aws/alb-cloudwatch-alarms?ref=tags/1.0.104"
+  source = "git@github.com:companieshouse/terraform-modules//aws/alb-cloudwatch-alarms?ref=tags/1.0.357"
 
   alb_arn_suffix            = module.adminsites_internal_alb.this_lb_arn_suffix
   target_group_arn_suffixes = module.adminsites_internal_alb.target_group_arn_suffixes

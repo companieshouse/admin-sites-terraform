@@ -24,7 +24,7 @@ resource "aws_autoscaling_schedule" "xmladmin_schedule_start" {
 
 # ASG Module
 module "xmladmin_autoscaling_groups" {
-  source = "git@github.com:companieshouse/terraform-modules//aws/terraform-aws-autoscaling?ref=tags/1.0.36"
+  source = "git@github.com:companieshouse/terraform-modules//aws/terraform-aws-autoscaling?ref=tags/1.0.357"
 
   name = "xmladmin-webserver"
   # Launch configuration
@@ -46,7 +46,7 @@ module "xmladmin_autoscaling_groups" {
   ]
   # Auto scaling group
   asg_name                       = "xmladmin-asg"
-  vpc_zone_identifier            = data.aws_subnet_ids.web.ids
+  vpc_zone_identifier            = data.aws_subnets.web.ids
   health_check_type              = "ELB"
   min_size                       = var.min_size
   max_size                       = var.max_size
@@ -65,9 +65,9 @@ module "xmladmin_autoscaling_groups" {
 
   tags_as_map = merge(
     local.default_tags,
-    map(
-      "ServiceTeam", "${upper(var.application)}-FE-Support"
-    )
+    {
+      ServiceTeam = "${upper(var.application)}-FE-Support"
+    }
   )
 
   depends_on = [
@@ -79,7 +79,7 @@ module "xmladmin_autoscaling_groups" {
 # XML Admin CloudWatch Alarms
 #--------------------------------------------
 module "xmladmin_autoscaling_groups_alarms" {
-  source = "git@github.com:companieshouse/terraform-modules//aws/asg-cloudwatch-alarms?ref=tags/1.0.108"
+  source = "git@github.com:companieshouse/terraform-modules//aws/asg-cloudwatch-alarms?ref=tags/1.0.357"
 
   autoscaling_group_name = module.xmladmin_autoscaling_groups.this_autoscaling_group_name
   prefix                 = "xmladmin-asg-alarms"

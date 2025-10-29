@@ -8,3 +8,5 @@
 # Local Terraform workspace data
 terraform.tfstate.backup
 terraform.tfstate.d
+
+.python-version
