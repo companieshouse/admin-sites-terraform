@@ -1,21 +1,20 @@
 # ewf-infrastructure
 
-<!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 ## Requirements
 
 | Name | Version |
 |------|---------|
-| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 0.13.0, < 0.14 |
-| <a name="requirement_aws"></a> [aws](#requirement\_aws) | >= 0.3, < 4.0 |
-| <a name="requirement_vault"></a> [vault](#requirement\_vault) | >= 2.0.0 |
+| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.3, < 2.0 |
+| <a name="requirement_aws"></a> [aws](#requirement\_aws) | >= 4.0, < 6.0 |
+| <a name="requirement_vault"></a> [vault](#requirement\_vault) | >= 4.0, < 5.0 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
-| <a name="provider_aws"></a> [aws](#provider\_aws) | >= 0.3, < 4.0 |
+| <a name="provider_aws"></a> [aws](#provider\_aws) | >= 4.0, < 6.0 |
 | <a name="provider_template"></a> [template](#provider\_template) | n/a |
-| <a name="provider_vault"></a> [vault](#provider\_vault) | >= 2.0.0 |
+| <a name="provider_vault"></a> [vault](#provider\_vault) | >= 4.0, < 5.0 |
 
 ## Modules
 
@@ -116,4 +115,3 @@
 | Name | Description |
 |------|-------------|
 | <a name="output_admin_sites_dns"></a> [admin\_sites\_dns](#output\_admin\_sites\_dns) | n/a |
-<!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->

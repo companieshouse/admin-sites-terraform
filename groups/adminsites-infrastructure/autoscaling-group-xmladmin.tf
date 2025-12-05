@@ -1,34 +1,34 @@
 # ASG Scheduled Shutdown for non-production
-resource "aws_autoscaling_schedule" "xmloutadmin_schedule_stop" {
+resource "aws_autoscaling_schedule" "xmladmin_schedule_stop" {
   count = var.environment == "live" ? 0 : 1
 
-  scheduled_action_name  = "${var.aws_account}-${var.application}-xmloutadmin-scheduled-shutdown"
+  scheduled_action_name  = "${var.aws_account}-${var.application}-xmladmin-scheduled-shutdown"
   min_size               = 0
   max_size               = 0
   desired_capacity       = 0
   recurrence             = "00 20 * * 1-5" #Mon-Fri at 8pm
-  autoscaling_group_name = module.xmloutadmin_autoscaling_groups.this_autoscaling_group_name
+  autoscaling_group_name = module.xmladmin_autoscaling_groups.this_autoscaling_group_name
 }
 
 # ASG Scheduled Startup for non-production
-resource "aws_autoscaling_schedule" "xmloutadmin_schedule_start" {
+resource "aws_autoscaling_schedule" "xmladmin_schedule_start" {
   count = var.environment == "live" ? 0 : 1
 
-  scheduled_action_name  = "${var.aws_account}-${var.application}-xmloutadmin-scheduled-startup"
+  scheduled_action_name  = "${var.aws_account}-${var.application}-xmladmin-scheduled-startup"
   min_size               = var.min_size
   max_size               = var.max_size
   desired_capacity       = var.desired_capacity
   recurrence             = "00 06 * * 1-5" #Mon-Fri at 6am
-  autoscaling_group_name = module.xmloutadmin_autoscaling_groups.this_autoscaling_group_name
+  autoscaling_group_name = module.xmladmin_autoscaling_groups.this_autoscaling_group_name
 }
 
 # ASG Module
-module "xmloutadmin_autoscaling_groups" {
+module "xmladmin_autoscaling_groups" {
   source = "git@github.com:companieshouse/terraform-modules//aws/terraform-aws-autoscaling?ref=tags/1.0.357"
 
-  name = "xmloutadmin-webserver"
+  name = "xmladmin-webserver"
   # Launch configuration
-  lc_name       = "xmloutadmin-launchconfig"
+  lc_name       = "xmladmin-launchconfig"
   image_id      = data.aws_ami.adminsites.id
   instance_type = var.instance_size
   security_groups = [
@@ -45,7 +45,7 @@ module "xmloutadmin_autoscaling_groups" {
     },
   ]
   # Auto scaling group
-  asg_name                       = "xmloutadmin-asg"
+  asg_name                       = "xmladmin-asg"
   vpc_zone_identifier            = data.aws_subnets.web.ids
   health_check_type              = "ELB"
   min_size                       = var.min_size
@@ -59,9 +59,9 @@ module "xmloutadmin_autoscaling_groups" {
   refresh_triggers               = ["launch_configuration"]
   key_name                       = aws_key_pair.adminsites_keypair.key_name
   termination_policies           = ["OldestLaunchConfiguration"]
-  target_group_arns              = [for group in module.adminsites_internal_alb.target_group_arns : group if can(regex("xmloutadmin", group))]
-  iam_instance_profile           = module.xmloutadmin_iam_profile.aws_iam_instance_profile.name
-  user_data_base64               = data.template_cloudinit_config.xmloutadmin.rendered
+  target_group_arns              = [for group in module.adminsites_internal_alb.target_group_arns : group if can(regex("xmladmin", group))]
+  iam_instance_profile           = module.xmladmin_iam_profile.aws_iam_instance_profile.name
+  user_data_base64               = data.template_cloudinit_config.xmladmin.rendered
 
   tags_as_map = merge(
     local.default_tags,
@@ -76,12 +76,12 @@ module "xmloutadmin_autoscaling_groups" {
 }
 
 #--------------------------------------------
-# XMLout Admin CloudWatch Alarms
+# XML Admin CloudWatch Alarms
 #--------------------------------------------
-module "xmloutadmin_autoscaling_groups_alarms" {
+module "xmladmin_autoscaling_groups_alarms" {
   source = "git@github.com:companieshouse/terraform-modules//aws/asg-cloudwatch-alarms?ref=tags/1.0.357"
 
-  autoscaling_group_name = module.xmloutadmin_autoscaling_groups.this_autoscaling_group_name
+  autoscaling_group_name = module.xmladmin_autoscaling_groups.this_autoscaling_group_name
   prefix                 = "xmladmin-asg-alarms"
 
   in_service_evaluation_periods      = "3"
@@ -103,6 +103,6 @@ module "xmloutadmin_autoscaling_groups_alarms" {
 
   depends_on = [
     module.cloudwatch_sns_notifications,
-    module.xmloutadmin_autoscaling_groups
+    module.xmladmin_autoscaling_groups
   ]
 }
