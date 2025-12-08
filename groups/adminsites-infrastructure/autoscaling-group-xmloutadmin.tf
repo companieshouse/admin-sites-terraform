@@ -66,6 +66,7 @@ module "xmloutadmin_autoscaling_groups" {
   tags_as_map = merge(
     local.default_tags,
     {
+      Name        = "xmloutadmin-webserver"
       ServiceTeam = "${upper(var.application)}-FE-Support"
     }
   )

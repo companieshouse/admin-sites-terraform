@@ -12,7 +12,17 @@ module "adminsites_internal_alb_security_group" {
   ingress_cidr_blocks = local.admin_cidrs
   ingress_rules       = ["http-80-tcp", "https-443-tcp"]
   egress_rules        = ["all-all"]
+
+  tags = merge(
+    local.default_tags,
+    {
+      Name        = "sgr-${var.application}-alb-001"
+      ServiceTeam = "${upper(var.application)}-FE-Support"
+    }
+  )
 }
+
+
 
 #--------------------------------------------
 # Internal ALB Admin Sites
@@ -170,7 +180,8 @@ module "adminsites_internal_alb" {
 
   tags = merge(
     local.default_tags,
-    {
+    { 
+      Name        = "alb-${var.application}-001"
       ServiceTeam = "${upper(var.application)}-FE-Support"
     }
   )
