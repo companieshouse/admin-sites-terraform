@@ -180,7 +180,7 @@ module "adminsites_internal_alb" {
 
   tags = merge(
     local.default_tags,
-    { 
+    {
       Name        = "alb-${var.application}-001"
       ServiceTeam = "${upper(var.application)}-FE-Support"
     }

@@ -21,7 +21,7 @@ module "adminsites_asg_security_group" {
 
   tags = merge(
     local.default_tags,
-    { 
+    {
       Name        = "sgr-${var.application}-asg-001"
       ServiceTeam = "${upper(var.application)}-FE-Support"
     }
