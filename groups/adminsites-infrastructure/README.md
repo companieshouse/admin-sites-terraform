@@ -1,7 +1,4 @@
 # ewf-infrastructure
-
-## Requirements
-
 ## Requirements
 
 | Name | Version |
