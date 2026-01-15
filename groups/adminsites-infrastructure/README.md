@@ -2,6 +2,8 @@
 
 ## Requirements
 
+## Requirements
+
 | Name | Version |
 |------|---------|
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.3.0, < 2.0.0 |
@@ -106,8 +108,6 @@
 | <a name="input_nfs_server"></a> [nfs\_server](#input\_nfs\_server) | The name or IP of the environment specific NFS server | `string` | `null` | no |
 | <a name="input_region"></a> [region](#input\_region) | Short version of the name of the AWS region in which resources will be administered | `string` | n/a | yes |
 | <a name="input_service_port"></a> [service\_port](#input\_service\_port) | Target group backend port | `number` | `80` | no |
-| <a name="input_vault_password"></a> [vault\_password](#input\_vault\_password) | Password for connecting to Vault - usually supplied through TF\_VARS | `string` | n/a | yes |
-| <a name="input_vault_username"></a> [vault\_username](#input\_vault\_username) | Username for connecting to Vault - usually supplied through TF\_VARS | `string` | n/a | yes |
 | <a name="input_xmladmin_app_release_version"></a> [xmladmin\_app\_release\_version](#input\_xmladmin\_app\_release\_version) | Version of the application to download for deployment to frontend server(s) | `string` | n/a | yes |
 | <a name="input_xmladmin_custom_logs"></a> [xmladmin\_custom\_logs](#input\_xmladmin\_custom\_logs) | Map of log file information for XML Admin specifically; used to create log groups, IAM permissions and passed to the application to configure remote logging | `map(any)` | `{}` | no |
 | <a name="input_xmloutadmin_app_release_version"></a> [xmloutadmin\_app\_release\_version](#input\_xmloutadmin\_app\_release\_version) | Version of the application to download for deployment to frontend server(s) | `string` | n/a | yes |
