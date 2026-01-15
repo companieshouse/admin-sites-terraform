@@ -199,4 +199,3 @@ variable "xmloutadmin_custom_logs" {
   description = "Map of log file information for XMLOUT Admin specifically; used to create log groups, IAM permissions and passed to the application to configure remote logging"
   default     = {}
 }
-
