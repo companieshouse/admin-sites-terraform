@@ -120,7 +120,7 @@ data "template_file" "ewfadmin" {
   }
 }
 
-data "template_cloudinit_config" "ewfadmin" {
+data "cloudinit_config" "ewfadmin" {
   gzip          = true
   base64_encode = true
 
@@ -145,7 +145,7 @@ data "template_file" "xmladmin" {
   }
 }
 
-data "template_cloudinit_config" "xmladmin" {
+data "cloudinit_config" "xmladmin" {
   gzip          = true
   base64_encode = true
 
@@ -170,7 +170,7 @@ data "template_file" "xmloutadmin" {
   }
 }
 
-data "template_cloudinit_config" "xmloutadmin" {
+data "cloudinit_config" "xmloutadmin" {
   gzip          = true
   base64_encode = true
 

@@ -61,7 +61,7 @@ module "ewfadmin_autoscaling_groups" {
   termination_policies           = ["OldestLaunchConfiguration"]
   target_group_arns              = [for group in module.adminsites_internal_alb.target_group_arns : group if can(regex("ewfadmin", group))]
   iam_instance_profile           = module.ewfadmin_iam_profile.aws_iam_instance_profile.name
-  user_data_base64               = data.template_cloudinit_config.ewfadmin.rendered
+  user_data_base64               = data.cloudinit_config.ewfadmin.rendered
 
   tags_as_map = merge(
     local.default_tags,

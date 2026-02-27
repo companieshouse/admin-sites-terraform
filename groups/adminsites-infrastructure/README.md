@@ -4,16 +4,17 @@
 | Name | Version |
 |------|---------|
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.3.0, < 2.0.0 |
-| <a name="requirement_aws"></a> [aws](#requirement\_aws) | >= 5.0,  < 6.0 |
-| <a name="requirement_vault"></a> [vault](#requirement\_vault) | >= 3.25.0, < 5.3.1 |
+| <a name="requirement_aws"></a> [aws](#requirement\_aws) | >= 5.0,   < 6.0 |
+| <a name="requirement_vault"></a> [vault](#requirement\_vault) | >= 3.25.0, < 5.3.0 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
 | <a name="provider_aws"></a> [aws](#provider\_aws) | >= 5.0, < 6.0 |
+| <a name="provider_cloudinit"></a> [cloudinit](#provider\_cloudinit) | n/a |
 | <a name="provider_template"></a> [template](#provider\_template) | n/a |
-| <a name="provider_vault"></a> [vault](#provider\_vault) | >= 3.25.0, < 5.3.1 |
+| <a name="provider_vault"></a> [vault](#provider\_vault) | >= 3.25.0, < 5.3.0 |
 
 ## Modules
 
@@ -58,9 +59,9 @@
 | [aws_subnets.public](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/subnets) | data source |
 | [aws_subnets.web](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/subnets) | data source |
 | [aws_vpc.vpc](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/vpc) | data source |
-| [template_cloudinit_config.ewfadmin](https://registry.terraform.io/providers/hashicorp/template/latest/docs/data-sources/cloudinit_config) | data source |
-| [template_cloudinit_config.xmladmin](https://registry.terraform.io/providers/hashicorp/template/latest/docs/data-sources/cloudinit_config) | data source |
-| [template_cloudinit_config.xmloutadmin](https://registry.terraform.io/providers/hashicorp/template/latest/docs/data-sources/cloudinit_config) | data source |
+| [cloudinit_config.ewfadmin](https://registry.terraform.io/providers/hashicorp/template/latest/docs/data-sources/cloudinit_config) | data source |
+| [cloudinit_config.xmladmin](https://registry.terraform.io/providers/hashicorp/template/latest/docs/data-sources/cloudinit_config) | data source |
+| [cloudinit_config.xmloutadmin](https://registry.terraform.io/providers/hashicorp/template/latest/docs/data-sources/cloudinit_config) | data source |
 | [template_file.ewfadmin](https://registry.terraform.io/providers/hashicorp/template/latest/docs/data-sources/file) | data source |
 | [template_file.xmladmin](https://registry.terraform.io/providers/hashicorp/template/latest/docs/data-sources/file) | data source |
 | [template_file.xmloutadmin](https://registry.terraform.io/providers/hashicorp/template/latest/docs/data-sources/file) | data source |

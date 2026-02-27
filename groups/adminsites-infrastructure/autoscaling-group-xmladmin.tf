@@ -61,7 +61,7 @@ module "xmladmin_autoscaling_groups" {
   termination_policies           = ["OldestLaunchConfiguration"]
   target_group_arns              = [for group in module.adminsites_internal_alb.target_group_arns : group if can(regex("xmladmin", group))]
   iam_instance_profile           = module.xmladmin_iam_profile.aws_iam_instance_profile.name
-  user_data_base64               = data.template_cloudinit_config.xmladmin.rendered
+  user_data_base64               = data.cloudinit_config.xmladmin.rendered
 
   tags_as_map = merge(
     local.default_tags,
