@@ -8,6 +8,7 @@ resource "aws_cloudwatch_log_group" "ewfadmin" {
   tags = merge(
     local.default_tags,
     {
+      Name        = each.value["log_group_name"]
       ServiceTeam = "${upper(var.application)}-FE-Support"
     }
   )
@@ -23,6 +24,7 @@ resource "aws_cloudwatch_log_group" "xmladmin" {
   tags = merge(
     local.default_tags,
     {
+      Name        = each.value["log_group_name"]
       ServiceTeam = "${upper(var.application)}-FE-Support"
     }
   )
@@ -38,6 +40,7 @@ resource "aws_cloudwatch_log_group" "xmloutadmin" {
   tags = merge(
     local.default_tags,
     {
+      Name        = each.value["log_group_name"]
       ServiceTeam = "${upper(var.application)}-FE-Support"
     }
   )
