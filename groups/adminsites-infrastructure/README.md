@@ -21,9 +21,9 @@
 
 | Name | Source | Version |
 |------|--------|---------|
-| <a name="module_adminsites_asg_security_group"></a> [adminsites\_asg\_security\_group](#module\_adminsites\_asg\_security\_group) | terraform-aws-modules/security-group/aws | 5.0 |
-| <a name="module_adminsites_internal_alb"></a> [adminsites\_internal\_alb](#module\_adminsites\_internal\_alb) | terraform-aws-modules/alb/aws | 5.0 |
-| <a name="module_adminsites_internal_alb_security_group"></a> [adminsites\_internal\_alb\_security\_group](#module\_adminsites\_internal\_alb\_security\_group) | terraform-aws-modules/security-group/aws | 5.0 |
+| <a name="module_adminsites_asg_security_group"></a> [adminsites\_asg\_security\_group](#module\_adminsites\_asg\_security\_group) | terraform-aws-modules/security-group/aws | 5.3.1 |
+| <a name="module_adminsites_internal_alb"></a> [adminsites\_internal\_alb](#module\_adminsites\_internal\_alb) | terraform-aws-modules/alb/aws | 6.7.0 |
+| <a name="module_adminsites_internal_alb_security_group"></a> [adminsites\_internal\_alb\_security\_group](#module\_adminsites\_internal\_alb\_security\_group) | terraform-aws-modules/security-group/aws | 5.3.1 |
 | <a name="module_cloudwatch_sns_notifications"></a> [cloudwatch\_sns\_notifications](#module\_cloudwatch\_sns\_notifications) | terraform-aws-modules/sns/aws | 3.3.0 |
 | <a name="module_ewfadmin_autoscaling_groups"></a> [ewfadmin\_autoscaling\_groups](#module\_ewfadmin\_autoscaling\_groups) | git@github.com:companieshouse/terraform-modules//aws/terraform-aws-autoscaling | tags/1.0.357 |
 | <a name="module_ewfadmin_autoscaling_groups_alarms"></a> [ewfadmin\_autoscaling\_groups\_alarms](#module\_ewfadmin\_autoscaling\_groups\_alarms) | git@github.com:companieshouse/terraform-modules//aws/asg-cloudwatch-alarms | tags/1.0.357 |
