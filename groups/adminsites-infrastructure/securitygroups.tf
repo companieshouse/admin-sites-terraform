@@ -3,7 +3,7 @@
 # ------------------------------------------------------------------------------
 module "adminsites_asg_security_group" {
   source  = "terraform-aws-modules/security-group/aws"
-  version = "~> 3.0"
+  version = "5.0"
 
   name        = "sgr-${var.application}-asg-001"
   description = "Security group for the ${var.application} autoscaling groups"
