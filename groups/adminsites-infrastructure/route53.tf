@@ -6,8 +6,8 @@ resource "aws_route53_record" "internal_dns" {
   type    = "A"
 
   alias {
-    name                   = module.adminsites_internal_alb.lb_dns_name
-    zone_id                = module.adminsites_internal_alb.lb_zone_id
+    name                   = module.adminsites_internal_alb.this_lb_dns_name
+    zone_id                = module.adminsites_internal_alb.this_lb_zone_id
     evaluate_target_health = true
   }
 }

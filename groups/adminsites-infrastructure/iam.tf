@@ -16,7 +16,7 @@ module "ewfadmin_iam_profile" {
       local.ewfadmin_log_groups
     ),
   ]) : null
-  instance_asg_arns = [module.ewfadmin_autoscaling_groups.autoscaling_group_arn]
+  instance_asg_arns = [module.ewfadmin_autoscaling_groups.this_autoscaling_group_arn]
   kms_key_refs = [
     "alias/${var.account}/${var.region}/ebs",
     local.ssm_kms_key_id,
@@ -67,7 +67,7 @@ module "xmladmin_iam_profile" {
       local.xmladmin_log_groups
     ),
   ]) : null
-  instance_asg_arns = [module.xmladmin_autoscaling_groups.autoscaling_group_arn]
+  instance_asg_arns = [module.xmladmin_autoscaling_groups.this_autoscaling_group_arn]
   kms_key_refs = [
     "alias/${var.account}/${var.region}/ebs",
     local.ssm_kms_key_id,
@@ -118,7 +118,7 @@ module "xmloutadmin_iam_profile" {
       local.xmloutadmin_log_groups
     ),
   ]) : null
-  instance_asg_arns = [module.xmloutadmin_autoscaling_groups.autoscaling_group_arn]
+  instance_asg_arns = [module.xmloutadmin_autoscaling_groups.this_autoscaling_group_arn]
   kms_key_refs = [
     "alias/${var.account}/${var.region}/ebs",
     local.ssm_kms_key_id,
