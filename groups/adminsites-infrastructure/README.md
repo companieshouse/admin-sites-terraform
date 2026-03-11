@@ -4,25 +4,26 @@
 | Name | Version |
 |------|---------|
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.3.0, < 2.0.0 |
-| <a name="requirement_aws"></a> [aws](#requirement\_aws) | >= 5.0,   < 6.0 |
-| <a name="requirement_vault"></a> [vault](#requirement\_vault) | >= 3.25.0, < 5.3.0 |
+| <a name="requirement_aws"></a> [aws](#requirement\_aws) | >= 5.0, < 6.0 |
+| <a name="requirement_cloudinit"></a> [cloudinit](#requirement\_cloudinit) | >= 2.0, < 3.0 |
+| <a name="requirement_vault"></a> [vault](#requirement\_vault) | >= 3.0.0, < 5.3.0 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
 | <a name="provider_aws"></a> [aws](#provider\_aws) | >= 5.0, < 6.0 |
-| <a name="provider_cloudinit"></a> [cloudinit](#provider\_cloudinit) | n/a |
+| <a name="provider_cloudinit"></a> [cloudinit](#provider\_cloudinit) | >= 2.0, < 3.0 |
 | <a name="provider_template"></a> [template](#provider\_template) | n/a |
-| <a name="provider_vault"></a> [vault](#provider\_vault) | >= 3.25.0, < 5.3.0 |
+| <a name="provider_vault"></a> [vault](#provider\_vault) | >= 3.0.0, < 5.3.0 |
 
 ## Modules
 
 | Name | Source | Version |
 |------|--------|---------|
-| <a name="module_adminsites_asg_security_group"></a> [adminsites\_asg\_security\_group](#module\_adminsites\_asg\_security\_group) | terraform-aws-modules/security-group/aws | ~> 3.0 |
-| <a name="module_adminsites_internal_alb"></a> [adminsites\_internal\_alb](#module\_adminsites\_internal\_alb) | terraform-aws-modules/alb/aws | ~> 5.0 |
-| <a name="module_adminsites_internal_alb_security_group"></a> [adminsites\_internal\_alb\_security\_group](#module\_adminsites\_internal\_alb\_security\_group) | terraform-aws-modules/security-group/aws | ~> 5.0 |
+| <a name="module_adminsites_asg_security_group"></a> [adminsites\_asg\_security\_group](#module\_adminsites\_asg\_security\_group) | terraform-aws-modules/security-group/aws | 5.0 |
+| <a name="module_adminsites_internal_alb"></a> [adminsites\_internal\_alb](#module\_adminsites\_internal\_alb) | terraform-aws-modules/alb/aws | 5.0 |
+| <a name="module_adminsites_internal_alb_security_group"></a> [adminsites\_internal\_alb\_security\_group](#module\_adminsites\_internal\_alb\_security\_group) | terraform-aws-modules/security-group/aws | 5.0 |
 | <a name="module_cloudwatch_sns_notifications"></a> [cloudwatch\_sns\_notifications](#module\_cloudwatch\_sns\_notifications) | terraform-aws-modules/sns/aws | 3.3.0 |
 | <a name="module_ewfadmin_autoscaling_groups"></a> [ewfadmin\_autoscaling\_groups](#module\_ewfadmin\_autoscaling\_groups) | git@github.com:companieshouse/terraform-modules//aws/terraform-aws-autoscaling | tags/1.0.357 |
 | <a name="module_ewfadmin_autoscaling_groups_alarms"></a> [ewfadmin\_autoscaling\_groups\_alarms](#module\_ewfadmin\_autoscaling\_groups\_alarms) | git@github.com:companieshouse/terraform-modules//aws/asg-cloudwatch-alarms | tags/1.0.357 |
@@ -59,9 +60,9 @@
 | [aws_subnets.public](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/subnets) | data source |
 | [aws_subnets.web](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/subnets) | data source |
 | [aws_vpc.vpc](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/vpc) | data source |
-| [cloudinit_config.ewfadmin](https://registry.terraform.io/providers/hashicorp/template/latest/docs/data-sources/cloudinit_config) | data source |
-| [cloudinit_config.xmladmin](https://registry.terraform.io/providers/hashicorp/template/latest/docs/data-sources/cloudinit_config) | data source |
-| [cloudinit_config.xmloutadmin](https://registry.terraform.io/providers/hashicorp/template/latest/docs/data-sources/cloudinit_config) | data source |
+| [cloudinit_config.ewfadmin](https://registry.terraform.io/providers/hashicorp/cloudinit/latest/docs/data-sources/config) | data source |
+| [cloudinit_config.xmladmin](https://registry.terraform.io/providers/hashicorp/cloudinit/latest/docs/data-sources/config) | data source |
+| [cloudinit_config.xmloutadmin](https://registry.terraform.io/providers/hashicorp/cloudinit/latest/docs/data-sources/config) | data source |
 | [template_file.ewfadmin](https://registry.terraform.io/providers/hashicorp/template/latest/docs/data-sources/file) | data source |
 | [template_file.xmladmin](https://registry.terraform.io/providers/hashicorp/template/latest/docs/data-sources/file) | data source |
 | [template_file.xmloutadmin](https://registry.terraform.io/providers/hashicorp/template/latest/docs/data-sources/file) | data source |
