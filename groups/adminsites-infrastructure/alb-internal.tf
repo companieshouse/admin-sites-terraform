@@ -193,7 +193,7 @@ module "adminsites_internal_alb" {
 module "internal_alb_alarms" {
   source = "git@github.com:companieshouse/terraform-modules//aws/alb-cloudwatch-alarms?ref=tags/1.0.357"
 
-  alb_arn_suffix            = module.adminsites_internal_alb.this_lb_arn_suffix
+  alb_arn_suffix            = module.adminsites_internal_alb.lb_arn_suffix
   target_group_arn_suffixes = module.adminsites_internal_alb.target_group_arn_suffixes
 
   prefix                    = "admin-sites-"
