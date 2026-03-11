@@ -193,7 +193,7 @@ module "adminsites_internal_alb" {
 module "internal_alb_alarms" {
   source = "git@github.com:companieshouse/terraform-modules//aws/alb-cloudwatch-alarms?ref=tags/1.0.357"
 
-  alb_arn_suffix            = module.adminsites_internal_alb.this_lb_arn_suffix
+  alb_arn_suffix            = module.adminsites_internal_alb.lb_arn_suffix
   target_group_arn_suffixes = module.adminsites_internal_alb.target_group_arn_suffixes
 
   prefix                    = "admin-sites-"
@@ -204,8 +204,8 @@ module "internal_alb_alarms" {
   maximum_5xx_threshold     = "2"
   unhealthy_hosts_threshold = "1"
 
-  actions_alarm = var.enable_sns_topic ? [module.cloudwatch_sns_notifications[0].sns_topic_arn] : []
-  actions_ok    = var.enable_sns_topic ? [module.cloudwatch_sns_notifications[0].sns_topic_arn] : []
+  actions_alarm = var.enable_sns_topic ? [module.cloudwatch_sns_notifications[0].topic_arn] : []
+  actions_ok    = var.enable_sns_topic ? [module.cloudwatch_sns_notifications[0].topic_arn] : []
 
   depends_on = [
     module.cloudwatch_sns_notifications,
