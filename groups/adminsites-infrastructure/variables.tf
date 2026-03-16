@@ -63,12 +63,6 @@ variable "enable_sns_topic" {
 # NFS Variables
 # ------------------------------------------------------------------------------
 
-variable "nfs_server" {
-  type        = string
-  description = "The name or IP of the environment specific NFS server"
-  default     = null
-}
-
 variable "nfs_mount_destination_parent_dir" {
   type        = string
   description = "The parent folder that all NFS shares should be mounted inside on the EC2 instance"
