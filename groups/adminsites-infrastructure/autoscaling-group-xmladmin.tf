@@ -71,9 +71,6 @@ module "xmladmin_autoscaling_groups" {
     }
   )
 
-  depends_on = [
-    module.adminsites_internal_alb
-  ]
 }
 
 #--------------------------------------------
@@ -98,12 +95,7 @@ module "xmladmin_autoscaling_groups_alarms" {
   total_instances_statistic_period   = "120"
   total_instances_in_service         = var.desired_capacity
 
-  actions_alarm = var.enable_sns_topic ? [module.cloudwatch_sns_notifications[0].topic_arn] : []
-  actions_ok    = var.enable_sns_topic ? [module.cloudwatch_sns_notifications[0].topic_arn] : []
+  actions_alarm = var.enable_sns_topic ? [module.cloudwatch_sns_notifications[0].sns_topic_arn] : []
+  actions_ok    = var.enable_sns_topic ? [module.cloudwatch_sns_notifications[0].sns_topic_arn] : []
 
-
-  depends_on = [
-    module.cloudwatch_sns_notifications,
-    module.xmladmin_autoscaling_groups
-  ]
 }
