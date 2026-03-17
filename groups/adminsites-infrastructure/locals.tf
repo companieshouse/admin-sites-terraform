@@ -5,7 +5,6 @@ locals {
   admin_cidrs         = values(data.vault_generic_secret.internal_cidrs.data)
   s3_releases         = data.vault_generic_secret.s3_releases.data
   adminsites_ec2_data = data.vault_generic_secret.adminsites_ec2_data.data
-  nfs_server          = data.vault_generic_secret.adminsites_nfs_data.data["nfs_server_address"]
 
   kms_keys_data               = data.vault_generic_secret.kms_keys.data
   account_ssm_key_arn         = local.kms_keys_data["ssm"]
@@ -45,7 +44,7 @@ locals {
     s3_bucket_configs          = local.s3_releases["config_bucket_name"]
     heritage_environment       = var.environment
     version                    = var.ewfadmin_app_release_version
-    default_nfs_server_address = local.nfs_server
+    default_nfs_server_address = var.nfs_server
     mounts_parent_dir          = var.nfs_mount_destination_parent_dir
     mounts                     = var.nfs_mounts
     region                     = var.aws_region
@@ -58,7 +57,7 @@ locals {
     s3_bucket_configs          = local.s3_releases["config_bucket_name"]
     heritage_environment       = var.environment
     version                    = var.xmladmin_app_release_version
-    default_nfs_server_address = local.nfs_server
+    default_nfs_server_address = var.nfs_server
     mounts_parent_dir          = var.nfs_mount_destination_parent_dir
     mounts                     = var.nfs_mounts
     region                     = var.aws_region
@@ -71,7 +70,7 @@ locals {
     s3_bucket_configs          = local.s3_releases["config_bucket_name"]
     heritage_environment       = var.environment
     version                    = var.xmloutadmin_app_release_version
-    default_nfs_server_address = local.nfs_server
+    default_nfs_server_address = var.nfs_server
     mounts_parent_dir          = var.nfs_mount_destination_parent_dir
     mounts                     = var.nfs_mounts
     region                     = var.aws_region

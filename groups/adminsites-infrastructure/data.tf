@@ -64,10 +64,6 @@ data "vault_generic_secret" "security_s3_buckets" {
   path = "aws-accounts/security/s3"
 }
 
-data "vault_generic_secret" "adminsites_nfs_data" {
-  path = "applications/${var.aws_account}-${var.aws_region}/${replace(var.application, "-", "")}/nfs"
-}
-
 data "vault_generic_secret" "adminsites_ec2_data" {
   path = "applications/${var.aws_account}-${var.aws_region}/${replace(var.application, "-", "")}/ec2"
 }
