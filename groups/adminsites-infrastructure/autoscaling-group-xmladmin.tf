@@ -32,7 +32,7 @@ module "xmladmin_autoscaling_groups" {
   image_id      = data.aws_ami.adminsites.id
   instance_type = var.instance_size
   security_groups = [
-    module.adminsites_asg_security_group.this_security_group_id,
+    module.adminsites_asg_security_group.security_group_id,
     data.aws_security_group.nagios_shared.id
   ]
   root_block_device = [
@@ -61,7 +61,7 @@ module "xmladmin_autoscaling_groups" {
   termination_policies           = ["OldestLaunchConfiguration"]
   target_group_arns              = [for group in module.adminsites_internal_alb.target_group_arns : group if can(regex("xmladmin", group))]
   iam_instance_profile           = module.xmladmin_iam_profile.aws_iam_instance_profile.name
-  user_data_base64               = data.template_cloudinit_config.xmladmin.rendered
+  user_data_base64               = data.cloudinit_config.xmladmin.rendered
 
   tags_as_map = merge(
     local.default_tags,
@@ -71,9 +71,6 @@ module "xmladmin_autoscaling_groups" {
     }
   )
 
-  depends_on = [
-    module.adminsites_internal_alb
-  ]
 }
 
 #--------------------------------------------
@@ -101,9 +98,4 @@ module "xmladmin_autoscaling_groups_alarms" {
   actions_alarm = var.enable_sns_topic ? [module.cloudwatch_sns_notifications[0].sns_topic_arn] : []
   actions_ok    = var.enable_sns_topic ? [module.cloudwatch_sns_notifications[0].sns_topic_arn] : []
 
-
-  depends_on = [
-    module.cloudwatch_sns_notifications,
-    module.xmladmin_autoscaling_groups
-  ]
 }

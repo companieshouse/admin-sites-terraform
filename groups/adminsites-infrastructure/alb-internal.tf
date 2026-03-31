@@ -3,7 +3,7 @@
 # ------------------------------------------------------------------------------
 module "adminsites_internal_alb_security_group" {
   source  = "terraform-aws-modules/security-group/aws"
-  version = "~> 5.0"
+  version = "5.3.1"
 
   name        = "sgr-${var.application}-alb-001"
   description = "Security group for the ${var.application} web servers"
@@ -29,7 +29,7 @@ module "adminsites_internal_alb_security_group" {
 #--------------------------------------------
 module "adminsites_internal_alb" {
   source  = "terraform-aws-modules/alb/aws"
-  version = "~> 5.0"
+  version = "6.7.0"
 
   name                       = "alb-${var.application}-001"
   vpc_id                     = data.aws_vpc.vpc.id
@@ -193,7 +193,7 @@ module "adminsites_internal_alb" {
 module "internal_alb_alarms" {
   source = "git@github.com:companieshouse/terraform-modules//aws/alb-cloudwatch-alarms?ref=tags/1.0.357"
 
-  alb_arn_suffix            = module.adminsites_internal_alb.this_lb_arn_suffix
+  alb_arn_suffix            = module.adminsites_internal_alb.lb_arn_suffix
   target_group_arn_suffixes = module.adminsites_internal_alb.target_group_arn_suffixes
 
   prefix                    = "admin-sites-"
@@ -206,9 +206,4 @@ module "internal_alb_alarms" {
 
   actions_alarm = var.enable_sns_topic ? [module.cloudwatch_sns_notifications[0].sns_topic_arn] : []
   actions_ok    = var.enable_sns_topic ? [module.cloudwatch_sns_notifications[0].sns_topic_arn] : []
-
-  depends_on = [
-    module.cloudwatch_sns_notifications,
-    module.adminsites_internal_alb
-  ]
 }
