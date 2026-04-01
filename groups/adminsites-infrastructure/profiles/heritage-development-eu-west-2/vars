@@ -103,3 +103,15 @@ xmloutadmin_custom_logs = {
     log_group_retention = 7
   }
 }
+
+chdadmin_custom_logs = {
+  "chdadm_access_log" = {
+  file_path = "/var/log/httpd"
+  log_group_retention = 7
+  }
+
+  "chdadm_error_log" = {
+    file_path = "/var/log/httpd"
+    log_group_retention = 7
+  }
+} 

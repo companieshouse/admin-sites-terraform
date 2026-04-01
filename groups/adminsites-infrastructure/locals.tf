@@ -20,7 +20,8 @@ locals {
   sites = [
     "ewfadmin",
     "xmladmin",
-    "xmloutadmin"
+    "xmloutadmin",
+    "chdadmin"
   ]
 
   #################################
@@ -31,10 +32,12 @@ locals {
   ewfadmin_cw_logs    = { for log, map in merge(var.cw_logs, var.ewfadmin_custom_logs) : log => merge(map, { "log_group_name" = "ewfadmin-${log}" }) }
   xmladmin_cw_logs    = { for log, map in merge(var.cw_logs, var.xmladmin_custom_logs) : log => merge(map, { "log_group_name" = "xmladmin-${log}" }) }
   xmloutadmin_cw_logs = { for log, map in merge(var.cw_logs, var.xmloutadmin_custom_logs) : log => merge(map, { "log_group_name" = "xmloutadmin-${log}" }) }
+  chdadmin_cw_logs    = { for log, map in merge(var.cw_logs, var.chdadmin_custom_logs) : log => merge(map, { "log_group_name" = "chdadmin-${log}" }) }
 
   ewfadmin_log_groups    = compact([for log, map in local.ewfadmin_cw_logs : lookup(map, "log_group_name", "")])
   xmladmin_log_groups    = compact([for log, map in local.xmladmin_cw_logs : lookup(map, "log_group_name", "")])
   xmloutadmin_log_groups = compact([for log, map in local.xmloutadmin_cw_logs : lookup(map, "log_group_name", "")])
+  chdadmin_log_groups    = compact([for log, map in local.chdadmin_cw_logs : lookup(map, "log_group_name", "")])
 
   ################################
 
@@ -78,6 +81,19 @@ locals {
     cw_agent_user              = "root"
   }
 
+  chdadmin_ansible_inputs = {
+    s3_bucket_releases         = local.s3_releases["release_bucket_name"]
+    s3_bucket_configs          = local.s3_releases["config_bucket_name"]
+    heritage_environment       = var.environment
+    version                    = var.chdadmin_app_release_version
+    default_nfs_server_address = var.nfs_server
+    mounts_parent_dir          = var.nfs_mount_destination_parent_dir
+    mounts                     = var.nfs_mounts
+    region                     = var.aws_region
+    cw_log_files               = local.chdadmin_cw_logs
+    cw_agent_user              = "root"
+  }
+
   parameter_store_path_prefix = "/${var.application}/${var.environment}"
 
   parameter_store_secrets = {
@@ -87,6 +103,8 @@ locals {
     xmladmin_frontend_ansible_inputs    = jsonencode(local.xmladmin_ansible_inputs)
     xmloutadmin_frontend_inputs         = data.vault_generic_secret.xmloutadmin_data.data_json
     xmloutadmin_frontend_ansible_inputs = jsonencode(local.xmloutadmin_ansible_inputs)
+    chdadmin_frontend_inputs            = data.vault_generic_secret.chdadmin_data.data_json
+    chdadmin_frontend_ansible_inputs    = jsonencode(local.chdadmin_ansible_inputs)
   }
 
   ################################

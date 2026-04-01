@@ -80,6 +80,10 @@ data "vault_generic_secret" "xmloutadmin_data" {
   path = "applications/${var.aws_account}-${var.aws_region}/${replace(var.application, "-", "")}/xmloutadmin"
 }
 
+data "vault_generic_secret" "chdadmin_data" {
+  path = "applications/${var.aws_account}-${var.aws_region}/${replace(var.application, "-", "")}/chdadmin"
+} 
+
 
 
 data "aws_acm_certificate" "acm_cert" {
@@ -177,5 +181,31 @@ data "cloudinit_config" "xmloutadmin" {
   part {
     content_type = "text/x-shellscript"
     content      = data.template_file.xmloutadmin.rendered
+  }
+}
+
+# ------------------------------------------------------------------------------
+# CHD Admin data
+# ------------------------------------------------------------------------------
+
+data "template_file" "chdadmin" {
+  template = file("${path.module}/templates/chdadmin_user_data.tpl")
+
+  vars = {
+    REGION               = var.aws_region
+    HERITAGE_ENVIRONMENT = title(var.environment)
+    APP_VERSION          = var.chdadmin_app_release_version
+    FRONTEND_INPUTS_PATH = "${local.parameter_store_path_prefix}/chdadmin_frontend_inputs"
+    ANSIBLE_INPUTS_PATH  = "${local.parameter_store_path_prefix}/chdadmin_frontend_ansible_inputs"
+  }
+}
+
+data "cloudinit_config" "chdadmin" {
+  gzip          = true
+  base64_encode = true
+
+  part {
+    content_type = "text/x-shellscript"
+    content      = data.template_file.chdadmin.rendered
   }
 }
