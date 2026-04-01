@@ -188,7 +188,7 @@ variable "xmloutadmin_custom_logs" {
 }
 
 # ------------------------------------------------------------------------------
-# XMLOUT Admin Variables
+# CHD Admin Variables
 # ------------------------------------------------------------------------------
 variable "chdadmin_app_release_version" {
   type        = string
