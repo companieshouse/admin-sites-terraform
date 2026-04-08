@@ -59,7 +59,7 @@ module "chdadmin_autoscaling_groups" {
   refresh_triggers               = ["launch_configuration"]
   key_name                       = aws_key_pair.adminsites_keypair.key_name
   termination_policies           = ["OldestLaunchConfiguration"]
-  target_group_arns              = [[for group in module.adminsites_internal_alb.target_group_arns : group if can(regex("chdadmin", group))]]
+  target_group_arns              = [for group in module.adminsites_internal_alb.target_group_arns : group if can(regex("chdadmin", group))]
   iam_instance_profile           = module.chdadmin_iam_profile.aws_iam_instance_profile.name
   user_data_base64               = data.cloudinit_config.ewfadmin.rendered
 
