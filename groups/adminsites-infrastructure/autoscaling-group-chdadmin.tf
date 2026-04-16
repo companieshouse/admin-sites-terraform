@@ -15,8 +15,8 @@ resource "aws_autoscaling_schedule" "chdadmin_schedule_start" {
   count = var.environment == "live" ? 0 : 1
   
   scheduled_action_name  = "${var.aws_account}-${var.application}-chdadmin-scheduled-startup"
-  min_size               = var.min_size
-  max_size               = var.max_size
+  min_size               = 1
+  max_size               = 1
   desired_capacity       = 1
   recurrence             = "00 06 * * 1-5" #Mon-Fri at 6am
   autoscaling_group_name = module.chdadmin_autoscaling_groups.this_autoscaling_group_name
