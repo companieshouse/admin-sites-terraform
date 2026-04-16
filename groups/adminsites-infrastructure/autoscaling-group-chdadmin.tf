@@ -17,7 +17,7 @@ resource "aws_autoscaling_schedule" "chdadmin_schedule_start" {
   scheduled_action_name  = "${var.aws_account}-${var.application}-chdadmin-scheduled-startup"
   min_size               = var.min_size
   max_size               = var.max_size
-  desired_capacity       = var.desired_capacity
+  desired_capacity       = 1
   recurrence             = "00 06 * * 1-5" #Mon-Fri at 6am
   autoscaling_group_name = module.chdadmin_autoscaling_groups.this_autoscaling_group_name
 }  
@@ -48,9 +48,9 @@ module "chdadmin_autoscaling_groups" {
   asg_name                       = "chdadmin-asg"
   vpc_zone_identifier            = data.aws_subnets.web.ids
   health_check_type              = "ELB"
-  min_size                       = var.min_size
-  max_size                       = var.max_size
-  desired_capacity               = var.desired_capacity
+  min_size                       = 1
+  max_size                       = 1
+  desired_capacity               = 1
   health_check_grace_period      = 300
   wait_for_capacity_timeout      = 0
   force_delete                   = true
