@@ -18,6 +18,11 @@ terraform {
       source  = "hashicorp/cloudinit"
       version = ">= 2.0, < 3.0"
     }
+
+    template = {
+      source  = "hashicorp/template"
+      version = "2.2.0"
+    }
   }
   backend "s3" {}
 }

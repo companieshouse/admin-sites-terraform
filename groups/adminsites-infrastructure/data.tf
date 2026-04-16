@@ -80,6 +80,10 @@ data "vault_generic_secret" "xmloutadmin_data" {
   path = "applications/${var.aws_account}-${var.aws_region}/${replace(var.application, "-", "")}/xmloutadmin"
 }
 
+data "vault_generic_secret" "chdadmin_data" {
+  path = "applications/${var.aws_account}-${var.aws_region}/${replace(var.application, "-", "")}/chdadmin"
+} 
+
 
 
 data "aws_acm_certificate" "acm_cert" {
@@ -108,17 +112,6 @@ data "aws_ami" "adminsites" {
 # ------------------------------------------------------------------------------
 # EWF Admin data
 # ------------------------------------------------------------------------------
-data "template_file" "ewfadmin" {
-  template = file("${path.module}/templates/ewfadmin_user_data.tpl")
-
-  vars = {
-    REGION               = var.aws_region
-    HERITAGE_ENVIRONMENT = title(var.environment)
-    APP_VERSION          = var.ewfadmin_app_release_version
-    FRONTEND_INPUTS_PATH = "${local.parameter_store_path_prefix}/ewfadmin_frontend_inputs"
-    ANSIBLE_INPUTS_PATH  = "${local.parameter_store_path_prefix}/ewfadmin_frontend_ansible_inputs"
-  }
-}
 
 data "cloudinit_config" "ewfadmin" {
   gzip          = true
@@ -126,24 +119,19 @@ data "cloudinit_config" "ewfadmin" {
 
   part {
     content_type = "text/x-shellscript"
-    content      = data.template_file.ewfadmin.rendered
+    content      = templatefile("${path.module}/templates/ewfadmin_user_data.tpl", {
+      REGION               = var.aws_region
+      HERITAGE_ENVIRONMENT = title(var.environment)
+      APP_VERSION          = var.ewfadmin_app_release_version
+      FRONTEND_INPUTS_PATH = "${local.parameter_store_path_prefix}/ewfadmin_frontend_inputs"
+      ANSIBLE_INPUTS_PATH  = "${local.parameter_store_path_prefix}/ewfadmin_frontend_ansible_inputs"
+    })
   }
 }
 
 # ------------------------------------------------------------------------------
 # XML Admin data
 # ------------------------------------------------------------------------------
-data "template_file" "xmladmin" {
-  template = file("${path.module}/templates/xmladmin_user_data.tpl")
-
-  vars = {
-    REGION               = var.aws_region
-    HERITAGE_ENVIRONMENT = title(var.environment)
-    APP_VERSION          = var.xmladmin_app_release_version
-    FRONTEND_INPUTS_PATH = "${local.parameter_store_path_prefix}/xmladmin_frontend_inputs"
-    ANSIBLE_INPUTS_PATH  = "${local.parameter_store_path_prefix}/xmladmin_frontend_ansible_inputs"
-  }
-}
 
 data "cloudinit_config" "xmladmin" {
   gzip          = true
@@ -151,24 +139,19 @@ data "cloudinit_config" "xmladmin" {
 
   part {
     content_type = "text/x-shellscript"
-    content      = data.template_file.xmladmin.rendered
+    content      = templatefile("${path.module}/templates/xmladmin_user_data.tpl", {
+      REGION               = var.aws_region
+      HERITAGE_ENVIRONMENT = title(var.environment)
+      APP_VERSION          = var.xmladmin_app_release_version
+      FRONTEND_INPUTS_PATH = "${local.parameter_store_path_prefix}/xmladmin_frontend_inputs"
+      ANSIBLE_INPUTS_PATH  = "${local.parameter_store_path_prefix}/xmladmin_frontend_ansible_inputs"
+    })
   }
 }
 
 # ------------------------------------------------------------------------------
 # XMLOUT Admin data
 # ------------------------------------------------------------------------------
-data "template_file" "xmloutadmin" {
-  template = file("${path.module}/templates/xmloutadmin_user_data.tpl")
-
-  vars = {
-    REGION               = var.aws_region
-    HERITAGE_ENVIRONMENT = title(var.environment)
-    APP_VERSION          = var.xmloutadmin_app_release_version
-    FRONTEND_INPUTS_PATH = "${local.parameter_store_path_prefix}/xmloutadmin_frontend_inputs"
-    ANSIBLE_INPUTS_PATH  = "${local.parameter_store_path_prefix}/xmloutadmin_frontend_ansible_inputs"
-  }
-}
 
 data "cloudinit_config" "xmloutadmin" {
   gzip          = true
@@ -176,6 +159,32 @@ data "cloudinit_config" "xmloutadmin" {
 
   part {
     content_type = "text/x-shellscript"
-    content      = data.template_file.xmloutadmin.rendered
+    content      = templatefile("${path.module}/templates/xmloutadmin_user_data.tpl", {
+      REGION               = var.aws_region
+      HERITAGE_ENVIRONMENT = title(var.environment)
+      APP_VERSION          = var.xmloutadmin_app_release_version
+      FRONTEND_INPUTS_PATH = "${local.parameter_store_path_prefix}/xmloutadmin_frontend_inputs"
+      ANSIBLE_INPUTS_PATH  = "${local.parameter_store_path_prefix}/xmloutadmin_frontend_ansible_inputs"
+    })
+  }
+}
+
+# ------------------------------------------------------------------------------
+# CHD Admin data
+# ------------------------------------------------------------------------------
+
+data "cloudinit_config" "chdadmin" {
+  gzip          = true
+  base64_encode = true
+
+  part {
+    content_type = "text/x-shellscript"
+    content      = templatefile("${path.module}/templates/chdadmin_user_data.tpl", {
+      REGION               = var.aws_region
+      HERITAGE_ENVIRONMENT = title(var.environment)
+      APP_VERSION          = var.chdadmin_app_release_version
+      FRONTEND_INPUTS_PATH = "${local.parameter_store_path_prefix}/chdadmin_frontend_inputs"
+      ANSIBLE_INPUTS_PATH  = "${local.parameter_store_path_prefix}/chdadmin_frontend_ansible_inputs"
+    })
   }
 }
