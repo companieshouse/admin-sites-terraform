@@ -110,6 +110,20 @@ module "adminsites_internal_alb" {
       conditions = [{
         host_headers = ["xmloutadmin-${var.domain_environment}-aws.${var.domain_name}"]
       }]
+    },
+    {
+      https_listener_index = 0
+      priority             = 4
+
+      actions = [
+        {
+          type               = "forward"
+          target_group_index = 3
+        }
+      ]
+      conditions = [{
+        host_headers = ["chdadmin-${var.domain_environment}-aws.${var.domain_name}"]
+      }]
     }
   ]
   target_groups = [
@@ -176,6 +190,27 @@ module "adminsites_internal_alb" {
         InstanceTargetGroupTag = "${var.application}-xmloutadmin"
       }
     },
+    {
+      name                 = "tg-${var.application}-chdadmin-01"
+      backend_protocol     = "HTTP"
+      backend_port         = var.service_port
+      target_type          = "instance"
+      deregistration_delay = 10
+      health_check = {
+        enabled             = true
+        interval            = 30
+        path                = var.health_check_path
+        port                = var.service_port
+        healthy_threshold   = 3
+        unhealthy_threshold = 3
+        timeout             = 6
+        protocol            = "HTTP"
+        matcher             = "200-399"
+      }
+      tags = {
+        InstanceTargetGroupTag = "${var.application}-chdadmin"
+      }
+    }
   ]
 
   tags = merge(
