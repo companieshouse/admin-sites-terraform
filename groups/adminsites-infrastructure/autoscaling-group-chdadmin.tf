@@ -82,7 +82,7 @@ module "chdadmin__autoscaling_groups_alarms" {
   prefix                 = "chdadmin-asg-alarms"
   in_service_evaluation_periods      = "3"
   in_service_statistic_period        = "120"
-  expected_instances_in_service      = 1
+  expected_instances_in_service      = var.desired_capacity
   in_pending_evaluation_periods      = "3"
   in_pending_statistic_period        = "120"
   in_standby_evaluation_periods      = "3"
@@ -91,7 +91,7 @@ module "chdadmin__autoscaling_groups_alarms" {
   in_terminating_statistic_period    = "120"
   total_instances_evaluation_periods = "3"
   total_instances_statistic_period   = "120"
-  total_instances_in_service         = 1
+  total_instances_in_service         = var.desired_capacity
 
   actions_alarm = var.enable_sns_topic ? [module.cloudwatch_sns_notifications[0].sns_topic_arn] : []
   actions_ok    = var.enable_sns_topic ? [module.cloudwatch_sns_notifications[0].sns_topic_arn] : []
