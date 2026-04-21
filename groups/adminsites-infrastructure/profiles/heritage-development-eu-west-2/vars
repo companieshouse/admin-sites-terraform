@@ -14,9 +14,9 @@ domain_environment = "dev"
 
 # Frontend ASG settings
 instance_size = "t2.medium"
-min_size = 1
-max_size = 1
-desired_capacity = 1
+min_size = 0
+max_size = 0
+desired_capacity = 0
 
 enable_sns_topic = "false"
 
