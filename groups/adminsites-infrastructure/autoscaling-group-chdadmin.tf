@@ -75,7 +75,7 @@ module "chdadmin_autoscaling_groups" {
 #--------------------------------------------
 # CHD Admin CloudWatch Alarms
 #--------------------------------------------
-module "chdadmin__autoscaling_groups_alarms" {
+module "chdadmin_autoscaling_groups_alarms" {
   source = "git@github.com:companieshouse/terraform-modules//aws/asg-cloudwatch-alarms?ref=tags/1.0.357"
   
   autoscaling_group_name = module.chdadmin_autoscaling_groups.this_autoscaling_group_name
