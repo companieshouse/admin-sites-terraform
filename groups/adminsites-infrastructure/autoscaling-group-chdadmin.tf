@@ -15,9 +15,9 @@ resource "aws_autoscaling_schedule" "chdadmin_schedule_start" {
   count = var.environment == "live" ? 0 : 1
   
   scheduled_action_name  = "${var.aws_account}-${var.application}-chdadmin-scheduled-startup"
-  min_size               = 1
-  max_size               = 1
-  desired_capacity       = 1
+  min_size               = var.min_size
+  max_size               = var.max_size
+  desired_capacity       = var.desired_capacity
   recurrence             = "00 06 * * 1-5" #Mon-Fri at 6am
   autoscaling_group_name = module.chdadmin_autoscaling_groups.this_autoscaling_group_name
 }  
@@ -48,9 +48,9 @@ module "chdadmin_autoscaling_groups" {
   asg_name                       = "chdadmin-asg"
   vpc_zone_identifier            = data.aws_subnets.web.ids
   health_check_type              = "ELB"
-  min_size                       = 1
-  max_size                       = 1
-  desired_capacity               = 1
+  min_size                       = var.min_size
+  max_size                       = var.max_size
+  desired_capacity               = var.desired_capacity
   health_check_grace_period      = 300
   wait_for_capacity_timeout      = 0
   force_delete                   = true
@@ -82,7 +82,7 @@ module "chdadmin_autoscaling_groups_alarms" {
   prefix                 = "chdadmin-asg-alarms"
   in_service_evaluation_periods      = "3"
   in_service_statistic_period        = "120"
-  expected_instances_in_service      = 1
+  expected_instances_in_service      = var.desired_capacity
   in_pending_evaluation_periods      = "3"
   in_pending_statistic_period        = "120"
   in_standby_evaluation_periods      = "3"
@@ -91,7 +91,7 @@ module "chdadmin_autoscaling_groups_alarms" {
   in_terminating_statistic_period    = "120"
   total_instances_evaluation_periods = "3"
   total_instances_statistic_period   = "120"
-  total_instances_in_service         = 1
+  total_instances_in_service         = var.desired_capacity
 
   actions_alarm = var.enable_sns_topic ? [module.cloudwatch_sns_notifications[0].sns_topic_arn] : []
   actions_ok    = var.enable_sns_topic ? [module.cloudwatch_sns_notifications[0].sns_topic_arn] : []
