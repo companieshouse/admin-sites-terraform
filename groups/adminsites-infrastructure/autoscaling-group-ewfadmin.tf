@@ -69,6 +69,7 @@ module "ewfadmin_autoscaling_groups" {
       Name                       = "ewfadmin-webserver"
       ServiceTeam                = "${upper(var.application)}-FE-Support"
       tenable-cwp-scan-disabled  = "true"
+      Repository                 = "admin-sites-terraform"
     }
   )
 }
