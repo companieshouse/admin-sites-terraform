@@ -66,10 +66,8 @@ module "chdadmin_autoscaling_groups" {
   tags_as_map = merge(
     local.default_tags,
     {
-      Name                       = "chdadmin-webserver"
-      ServiceTeam                = "${upper(var.application)}-FE-Support"
-      tenable-cwp-scan-disabled  = "true"
-      Repository                 = "admin-sites-terraform"
+      Name        = "chdadmin-webserver"
+      ServiceTeam = "${upper(var.application)}-FE-Support"
     }
   )
 }
