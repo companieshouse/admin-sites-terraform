@@ -69,7 +69,6 @@ module "xmladmin_autoscaling_groups" {
       Name                       = "xmladmin-webserver"
       ServiceTeam                = "${upper(var.application)}-FE-Support"
       tenable-cwp-scan-disabled  = "true"
-      Repository                 = "admin-sites-terraform"
     }
   )
 
