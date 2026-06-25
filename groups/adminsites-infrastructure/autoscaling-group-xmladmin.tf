@@ -66,9 +66,8 @@ module "xmladmin_autoscaling_groups" {
   tags_as_map = merge(
     local.default_tags,
     {
-      Name                       = "xmladmin-webserver"
-      ServiceTeam                = "${upper(var.application)}-FE-Support"
-      tenable-cwp-scan-disabled  = "true"
+      Name        = "xmladmin-webserver"
+      ServiceTeam = "${upper(var.application)}-FE-Support"
     }
   )
 
