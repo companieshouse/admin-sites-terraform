@@ -32,8 +32,7 @@ module "xmladmin_autoscaling_groups" {
   image_id      = data.aws_ami.adminsites.id
   instance_type = var.instance_size
   security_groups = [
-    module.adminsites_asg_security_group.security_group_id,
-    data.aws_security_group.nagios_shared.id
+    module.adminsites_asg_security_group.security_group_id
   ]
   root_block_device = [
     {
