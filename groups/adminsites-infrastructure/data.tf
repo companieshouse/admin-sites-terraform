@@ -28,13 +28,6 @@ data "aws_subnets" "web" {
   }
 }
 
-data "aws_security_group" "nagios_shared" {
-  filter {
-    name   = "group-name"
-    values = ["sgr-nagios-inbound-shared-*"]
-  }
-}
-
 data "aws_route53_zone" "private_zone" {
   name         = local.internal_fqdn
   private_zone = true
